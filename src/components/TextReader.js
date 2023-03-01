@@ -18,13 +18,16 @@ export default function TextPart() {
     const prompt = `explain the word '${word}' in this passage :'${sentence}' `
     setisLoading(true)
     try {
-      const res = await fetch("http://127.0.0.1:4000/api/chatgpt", {
-        method: "POST",
-        body: JSON.stringify({ prompt }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/chatgpt`,
+        {
+          method: "POST",
+          body: JSON.stringify({ prompt }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       const data = await res.json()
       console.log(data)
       setisLoading(false)
