@@ -10,7 +10,9 @@ export default function EpubViewer() {
     if (rendition) return
     try {
       console.log("ci")
-      book = ePub("http://localhost:4000/api/getepub/sample.epub")
+      book = ePub(
+        `${process.env.REACT_APP_BACKEND_URL}/api/getepub/sample.epub`
+      )
 
       let newRendition = book.renderTo("area", {
         method: "continuous",
