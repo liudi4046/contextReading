@@ -218,7 +218,7 @@ export default function TextPart() {
           padding: 2,
         }}
       >
-        {error && <Typography>{error.message}</Typography>}
+        {error && <Typography>{error.message.error}</Typography>}
         {isloading && <Typography>Loading...</Typography>}
         <Typography fontSize="large">{explain}</Typography>
       </Box>
