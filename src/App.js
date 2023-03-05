@@ -5,6 +5,7 @@ import theme from "./theme"
 import WordContext from "./context/WordContext"
 import { useState } from "react"
 import Test from "./pages/EpubViewer"
+import Chat from "./pages/Chat"
 function App() {
   const [word, setWord] = useState("")
   const [sentence, setSentence] = useState("")
@@ -15,8 +16,9 @@ function App() {
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/test" element={<Test />} />
+              <Route path="/" element={<Chat />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
