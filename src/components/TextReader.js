@@ -29,12 +29,15 @@ export default function TextPart() {
         }
       )
       const data = await res.json()
+      if (res.status === 400) {
+        throw new Error(data.error)
+      }
       console.log(data)
       setisLoading(false)
-      setExplain(data)
+      setExplain(data.text)
     } catch (error) {
       console.log(error.message)
-      setError(error)
+      setError(error.message)
       setisLoading(false)
     }
   }
@@ -61,6 +64,7 @@ export default function TextPart() {
 
   console.log(word)
   console.log(sentence)
+  // if (error) console.log(error.message.error)
   return (
     <Box sx={{ height: "97vh", position: "relative", display: "flex" }}>
       <Box
@@ -218,7 +222,7 @@ export default function TextPart() {
           padding: 2,
         }}
       >
-        {error && <Typography>{error.message.error}</Typography>}
+        {error && <Typography>{error}</Typography>}
         {isloading && <Typography>Loading...</Typography>}
         <Typography fontSize="large">{explain}</Typography>
       </Box>
