@@ -11,7 +11,9 @@ export default function EpubViewer() {
     try {
       console.log("ci")
       book = ePub(
-        `${process.env.REACT_APP_BACKEND_URL}/api/getepub/sample.epub`
+        `${process.env.REACT_APP_BACKEND_URL}/api/getepub/sample.epub`,{
+          mode: 'cors',
+        }
       )
 
       let newRendition = book.renderTo("area", {

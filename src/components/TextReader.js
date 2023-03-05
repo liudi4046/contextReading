@@ -15,7 +15,7 @@ export default function TextPart() {
   const [isloading, setisLoading] = useState(null)
   const [error, setError] = useState(null)
   const requestOpenai = async () => {
-    const prompt = `explain the word '${word}' in this passage :'${sentence}' `
+    const prompt = `${sentence}`
     setisLoading(true)
     try {
       const res = await fetch(
@@ -31,7 +31,8 @@ export default function TextPart() {
       const data = await res.json()
       console.log(data)
       setisLoading(false)
-      setExplain(data)
+      setExplain(data.text)
+      console.log("1",data)
     } catch (error) {
       console.log(error.message)
       setError(error)
