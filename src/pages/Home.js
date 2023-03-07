@@ -1,9 +1,20 @@
 import { Button, TextField } from "@mui/material"
 import { Box } from "@mui/system"
-import React from "react"
+import React, { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 import TextReader from "../components/TextReader"
 
 export default function Home() {
-  const handleClick = () => {}
-  return <TextReader />
+  const [isChatRoom, setIsChatRoom] = useState(false)
+  const navigate = useNavigate()
+  const goChatRoom = () => {
+    navigate("/chatRoom")
+  }
+  return (
+    <div>
+      <Button variant="contained" onClick={goChatRoom}>
+        ChatRoom
+      </Button>
+    </div>
+  )
 }
