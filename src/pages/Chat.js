@@ -87,6 +87,10 @@ export default function Chat() {
     return null
   }
   const submitTranscript = () => {
+    if (!transcript) {
+      alert('点击"开始说话"即可开始录音')
+      return
+    }
     socket1.send("give me short or meduim length response: " + transcript)
     setMessages((prev) => [...prev, transcript])
     setIsloading(true)
@@ -167,18 +171,18 @@ export default function Chat() {
           >
             <Typography>清空输入框</Typography>
           </Button>
+          <Button variant="contained" onClick={stopAudio}>
+            <Typography>停止音频</Typography>
+          </Button>
+          <Button variant="contained" onClick={restructureTranscript}>
+            <Typography>帮我组织语言</Typography>
+          </Button>
           <Button variant="contained" onClick={submitTranscript}>
             <Typography>提交文本</Typography>
           </Button>
           {/* <Button variant="contained" onClick={hideTranscript}>
             隐藏
           </Button> */}
-          <Button variant="contained" onClick={restructureTranscript}>
-            <Typography>帮你组织语言</Typography>
-          </Button>
-          <Button variant="contained" onClick={stopAudio}>
-            <Typography>停止音频</Typography>
-          </Button>
         </div>
       </div>
       <div className="restructureBox">
