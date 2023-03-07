@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Avatar, Box, Button, Badge, Typography } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -7,7 +7,7 @@ import { io } from "socket.io-client"
 import useFetch from "../hooks/useFetch"
 
 export default function Chat() {
-  const { transcript, resetTranscript } = useSpeechRecognition({})
+  const { transcript, resetTranscript } = useSpeechRecognition("")
   const [socket1, setSocket1] = useState(null)
   const [socket2, setSocket2] = useState(null)
   const [messages, setMessages] = useState([])
@@ -17,6 +17,7 @@ export default function Chat() {
   const [isLoading, setIsloading] = useState(false)
   const [isConnecting, setIsConnecting] = useState(true)
   const [isRecording, setIsRecording] = useState(false)
+  const [isStructureLoading, setIsStructureLoading] = useState(false)
   useEffect(() => {
     const connectServer = async (isRestructure) => {
       const ws = new WebSocket(
@@ -52,6 +53,7 @@ export default function Chat() {
           console.log("received conversation text message: ", message)
         } else if (typeof message === "string" && isRestructure) {
           //接受restructure text
+          setIsStructureLoading(false)
           setRestructureText(message)
           console.log("received restructure text message: ", message)
         } else {
@@ -86,12 +88,14 @@ export default function Chat() {
   }
   const submitTranscript = () => {
     socket1.send("give me short or meduim length response: " + transcript)
+    setMessages((prev) => [...prev, transcript])
     setIsloading(true)
     resetTranscript()
   }
 
   const hideTranscript = () => {}
   const restructureTranscript = () => {
+    setIsStructureLoading(true)
     setRestructureText("")
     socket2.send("restructure this sentence in english:" + transcript)
   }
@@ -106,12 +110,22 @@ export default function Chat() {
           {!isConnecting && messages.length === 0 && (
             <div>连接成功，请点击"开始说话"按钮</div>
           )}
-          {messages.map((message) => {
+          {messages.map((message, index) => {
             return (
-              <div>
-                <div>{message}</div>
-                <br />
-              </div>
+              <>
+                {index % 2 === 1 ? (
+                  <div className="responseMessage">
+                    <Avatar sx={{ bgcolor: "#d7ccc8" }}>GPT</Avatar>
+                    {message}
+                  </div>
+                ) : (
+                  <div className="userMessage">
+                    <div>{message}</div>
+
+                    <Avatar sx={{ bgcolor: "#d7ccc8" }}>我</Avatar>
+                  </div>
+                )}
+              </>
             )
           })}
           {isLoading && <div>正在生成中...</div>}
@@ -122,6 +136,8 @@ export default function Chat() {
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
         >
+          {transcript === "" &&
+            '你说的内容会显示在这里，点击"开始说话"即可开始录音'}
           {transcript}
         </div>
 
@@ -133,7 +149,7 @@ export default function Chat() {
               setIsRecording(true)
             }}
           >
-            开始说话
+            <Typography>开始说话</Typography>
           </Button>
           <Button
             variant="contained"
@@ -142,26 +158,33 @@ export default function Chat() {
               SpeechRecognition.stopListening()
             }}
           >
-            停止说话
+            <Typography>停止说话</Typography>
           </Button>
-          <Button variant="contained" onClick={resetTranscript}>
-            清空输入框
+          <Button
+            variant="contained"
+            className="my-button"
+            onClick={resetTranscript}
+          >
+            <Typography>清空输入框</Typography>
           </Button>
           <Button variant="contained" onClick={submitTranscript}>
-            提交文本
+            <Typography>提交文本</Typography>
           </Button>
           {/* <Button variant="contained" onClick={hideTranscript}>
             隐藏
           </Button> */}
           <Button variant="contained" onClick={restructureTranscript}>
-            帮你组织语言
+            <Typography>帮你组织语言</Typography>
           </Button>
           <Button variant="contained" onClick={stopAudio}>
-            停止音频
+            <Typography>停止音频</Typography>
           </Button>
         </div>
       </div>
-      <div className="restructureBox">你可以这么说：{restructureText}</div>
+      <div className="restructureBox">
+        {isStructureLoading && "正在加载中..."}
+        {!isStructureLoading && `你可以这么说：${restructureText}`}
+      </div>
     </div>
   )
 }

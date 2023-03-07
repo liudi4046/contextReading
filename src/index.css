@@ -46,6 +46,32 @@ code {
   margin-bottom: 20px;
   border-radius: 20px;
 }
+.chatBox .responseMessage {
+  border-radius: 20px;
+  background-color: #5d4037;
+  padding: 1em;
+  color: white;
+  max-width: 70%;
+  width: fit-content;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.chatBox .userMessage {
+  border-radius: 20px;
+  background-color: #a47263;
+  padding: 1em;
+  color: white;
+  max-width: 70%;
+  width: fit-content;
+  margin-bottom: 1em;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: space-between;
+}
 
 .chat .inputBox {
   background-color: #d7ccc8;
@@ -68,4 +94,10 @@ code {
 }
 button {
   background-color: #d7ccc8;
+  font-family: "Noto Sans SC", sans-serif;
+}
+.my-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
