@@ -11,7 +11,7 @@ export default function Home() {
     navigate("/chatRoom")
   }
   return (
-    <div>
+    <div className="home">
       <Button variant="contained" onClick={goChatRoom}>
         ChatRoom
       </Button>

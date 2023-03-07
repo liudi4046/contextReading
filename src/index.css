@@ -8,11 +8,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #3e2723;
+  font-family: "Noto Sans SC", sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chat {
   display: flex;
@@ -24,24 +36,36 @@ code {
 .chat .buttons button {
   margin: 10px;
 }
-.chat .inputBox {
-  width: 400px;
-  height: 150px;
-  padding: 10px;
-  border: 1px solid black;
-  overflow: auto;
-}
-.chat .restructureBox {
-  width: 400px;
-  height: 150px;
-  padding: 10px;
-  border: 1px solid black;
-  overflow: auto;
-}
 .chat .chatBox {
-  width: 400px;
+  background-color: #d7ccc8;
+  width: 700px;
   height: 500px;
   border: 1px solid black;
   overflow: auto;
   padding: 1em;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.chat .inputBox {
+  background-color: #d7ccc8;
+  width: 700px;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid black;
+  overflow: auto;
+  border-radius: 20px;
+}
+.restructureBox {
+  width: 400px;
+  height: 300px;
+  padding: 10px;
+  border: 1px solid black;
+  overflow: auto;
+  border-radius: 20px;
+  background-color: #d7ccc8;
+  margin: 20px;
+}
+button {
+  background-color: #d7ccc8;
 }
