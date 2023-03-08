@@ -21,7 +21,7 @@ export default function Chat() {
   useEffect(() => {
     const connectServer = async (isRestructure) => {
       const ws = new WebSocket(
-        `ws://liudi4046-scaling-waffle-r6rq44gjr7xcxxqx-4001.preview.app.github.dev/`
+        `wws://liudi4046-scaling-waffle-r6rq44gjr7xcxxqx-4001.preview.app.github.dev/`
       )
       if (!isRestructure) {
         setSocket1(ws)
