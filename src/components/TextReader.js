@@ -15,7 +15,7 @@ export default function TextPart() {
   const [isloading, setisLoading] = useState(null)
   const [error, setError] = useState(null)
   const requestOpenai = async () => {
-    const prompt = `${sentence}`
+    const prompt = `explain the words ${word} in:${sentence}`
     setisLoading(true)
     try {
       const res = await fetch(
@@ -66,7 +66,7 @@ export default function TextPart() {
   console.log(sentence)
   // if (error) console.log(error.message.error)
   return (
-    <Box sx={{ height: "97vh", position: "relative", display: "flex" }}>
+    <Box sx={{ height: "90vh", position: "relative", display: "flex" }}>
       <Box
         sx={{
           flex: 3,
@@ -79,11 +79,13 @@ export default function TextPart() {
         <Box
           sx={{
             border: "solid",
+
             borderColor: "primary.dark",
             justifyContent: "center",
             alignItems: "center",
-            height: "85%",
-            display: "flex",
+            height: "500px",
+            overflowY: "auto",
+            whiteSpace: "pre-wrap",
             backgroundColor: "#d7ccc8",
           }}
         >
@@ -96,7 +98,12 @@ export default function TextPart() {
                 backgroundColor: "primary.light",
               }}
             >
-              <Box>
+              <Box
+                sx={{
+                  marginTop: 25,
+                  marginLeft: 15,
+                }}
+              >
                 <Dropzone onDrop={handleFileUpload} accept=".txt">
                   {({ getRootProps, getInputProps }) => (
                     <Box {...getRootProps()} className="dropzone">
@@ -119,7 +126,12 @@ export default function TextPart() {
                 </Dropzone>
               </Box>
 
-              <Box>
+              <Box
+                sx={{
+                  marginTop: 25,
+                  marginLeft: 1,
+                }}
+              >
                 <Typography
                   variant="h5"
                   onClick={() => handleEpubClick()}
@@ -149,7 +161,7 @@ export default function TextPart() {
                 sx={{
                   flex: 1,
                   height: "95%",
-                  overflow: "auto",
+
                   padding: "16px",
                 }}
               >

@@ -11,8 +11,9 @@ export default function EpubViewer() {
     try {
       console.log("ci")
       book = ePub(
-        `${process.env.REACT_APP_BACKEND_URL}/api/getepub/sample.epub`,{
-          mode: 'cors',
+        `${process.env.REACT_APP_BACKEND_URL}/api/getepub/sample.epub`,
+        {
+          mode: "cors",
         }
       )
 
@@ -76,13 +77,7 @@ export default function EpubViewer() {
         <Button onClick={handleFrontClick} variant="contained">
           前一页
         </Button>
-        <Button
-          onClick={handleBackClick}
-          variant="contained"
-          sx={{
-            backgroundColor: "primary.light",
-          }}
-        >
+        <Button onClick={handleBackClick} variant="contained">
           后一页
         </Button>
       </Box>

@@ -21,14 +21,14 @@ export default function Chat() {
   useEffect(() => {
     const connectServer = async (isRestructure) => {
       const ws = new WebSocket(
-        `wss://liudi4046-scaling-waffle-r6rq44gjr7xcxxqx-4001.preview.app.github.dev/`
+        `ws://liudi4046-scaling-waffle-r6rq44gjr7xcxxqx-4001.preview.app.github.dev/`
       )
       if (!isRestructure) {
         setSocket1(ws)
       } else {
         setSocket2(ws)
       }
-
+      console.log("connecting")
       ws.binaryType = "arraybuffer"
       if (!isRestructure) {
       }
@@ -40,9 +40,9 @@ export default function Chat() {
           console.log("WebSocket connection opened")
         }
       }
-      setInterval(() => {
-        ws.send("keep-alive")
-      }, 30000)
+      // setInterval(() => {
+      //   ws.send("keep-alive")
+      // }, 30000)
 
       ws.onmessage = (event) => {
         const message = event.data
@@ -80,7 +80,12 @@ export default function Chat() {
     connectServer(false)
     connectServer(true)
     return () => {
-      socket1.close()
+      if (socket1) {
+        socket1.close()
+      }
+      if (socket2) {
+        socket2.close()
+      }
     }
   }, [])
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {

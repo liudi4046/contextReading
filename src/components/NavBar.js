@@ -6,7 +6,15 @@ import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
+import { useNavigate } from "react-router-dom"
+import WordContext from "../context/WordContext"
 export default function NavBar() {
+  const { isLoggedIn, setIsLoggedIn } = React.useContext(WordContext)
+  const navigate = useNavigate()
+  const Logout = () => {
+    setIsLoggedIn(false)
+    localStorage.removeItem("token")
+  }
   return (
     <Box>
       <AppBar position="sticky">
@@ -20,10 +28,24 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              ":hover": {
+                cursor: "pointer",
+              },
+            }}
+            onClick={() => navigate("/")}
+          >
             Home
           </Typography>
-          <Button color="inherit">Login</Button>
+          {isLoggedIn && (
+            <Button color="inherit" onClick={Logout}>
+              登出
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
