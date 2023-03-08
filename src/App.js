@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import theme from "./theme"
 import WordContext from "./context/WordContext"
 import { useState } from "react"
+import TextPart from "./components/TextReader"
 // import Test from "./pages/Test"
 import Chat from "./pages/Chat"
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<Home />} />
               {/* <Route path="/test" element={<Test />} /> */}
               <Route path="/chatRoom" element={<Chat />} />
+              <Route path="/textpart" element={<TextPart />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

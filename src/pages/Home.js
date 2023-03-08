@@ -15,6 +15,9 @@ export default function Home() {
       <Button variant="contained" onClick={goChatRoom}>
         ChatRoom
       </Button>
+      <Button variant="contained" onClick={() => navigate("/textpart")}>
+        TextReader
+      </Button>
     </div>
   )
 }

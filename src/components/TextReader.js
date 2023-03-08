@@ -84,6 +84,7 @@ export default function TextPart() {
             alignItems: "center",
             height: "85%",
             display: "flex",
+            backgroundColor: "#d7ccc8",
           }}
         >
           {isEpub && <EpubViewer />}
@@ -92,6 +93,7 @@ export default function TextPart() {
               sx={{
                 display: "flex",
                 gap: 30,
+                backgroundColor: "primary.light",
               }}
             >
               <Box>
@@ -187,6 +189,7 @@ export default function TextPart() {
               variant="filled"
               sx={{
                 width: 300,
+                backgroundColor: "#d7ccc8",
               }}
               onChange={(e) => setWord(e.target.value)}
               value={word}
@@ -198,6 +201,7 @@ export default function TextPart() {
               sx={{
                 ml: 1,
                 width: 300,
+                backgroundColor: "#d7ccc8",
               }}
               onChange={(e) => setSentence(e.target.value)}
               value={sentence}
@@ -220,6 +224,7 @@ export default function TextPart() {
           border: "solid 3px",
           borderColor: "primary.dark",
           padding: 2,
+          backgroundColor: "#d7ccc8",
         }}
       >
         {error && <Typography>{error}</Typography>}
