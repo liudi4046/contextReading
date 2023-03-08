@@ -79,7 +79,7 @@ export default function TextPart() {
         <Box
           sx={{
             border: "solid",
-
+            display: "flex",
             borderColor: "primary.dark",
             justifyContent: "center",
             alignItems: "center",
@@ -98,12 +98,7 @@ export default function TextPart() {
                 backgroundColor: "primary.light",
               }}
             >
-              <Box
-                sx={{
-                  marginTop: 25,
-                  marginLeft: 15,
-                }}
-              >
+              <Box>
                 <Dropzone onDrop={handleFileUpload} accept=".txt">
                   {({ getRootProps, getInputProps }) => (
                     <Box {...getRootProps()} className="dropzone">
@@ -126,12 +121,7 @@ export default function TextPart() {
                 </Dropzone>
               </Box>
 
-              <Box
-                sx={{
-                  marginTop: 25,
-                  marginLeft: 1,
-                }}
-              >
+              <Box>
                 <Typography
                   variant="h5"
                   onClick={() => handleEpubClick()}

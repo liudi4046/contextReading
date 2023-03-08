@@ -20,7 +20,7 @@ export default function EpubViewer() {
       let newRendition = book.renderTo("area", {
         method: "continuous",
         width: "500px",
-        height: "500px",
+        height: "400px",
       })
       console.log(book)
       newRendition.themes.default({ p: { "font-size": "large !important" } })
@@ -55,7 +55,7 @@ export default function EpubViewer() {
       <Box
         id="area"
         sx={{
-          width: "70%",
+          width: "65%",
           height: "100%",
           // backgroundColor: "primary.main",
           // border: "solid 1px",
